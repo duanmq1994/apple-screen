@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="https://vuejs.org/images/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <list-setup :name="number" />
+    <button @click="handleClick">Click to Change</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ListSetup from './components/ListSetup';
 export default {
   name: 'App',
+  data() {
+    return {
+      number: 0,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    ListSetup,
+  },
+  methods: {
+    handleClick() {
+      this.number += 1;
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
