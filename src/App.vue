@@ -1,26 +1,38 @@
 <template>
   <div id="app">
     <list-setup :name="number" />
-    <button @click="handleClick">Click to Change</button>
+    <button @click="handleClick">Change number</button>
+    <HelloWorld />
+    <button>Change date</button>
   </div>
 </template>
 
 <script>
+import { ref, provide, reactive } from 'vue';
 import ListSetup from './components/ListSetup';
+import HelloWorld from './components/HelloWorld';
 export default {
   name: 'App',
-  data() {
-    return {
-      number: 0,
-    };
-  },
   components: {
     ListSetup,
+    HelloWorld,
   },
-  methods: {
-    handleClick() {
-      this.number += 1;
-    },
+  setup() {
+    const number = ref(0);
+    const handleClick = () => {
+      number.value += 1;
+    };
+    const message = ref('Hola!');
+    const date = reactive({
+      month: 5,
+      day: 11,
+    });
+    provide('message', message);
+    provide('date', date);
+    return {
+      number,
+      handleClick,
+    };
   },
 };
 </script>
